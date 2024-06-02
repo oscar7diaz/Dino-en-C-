@@ -44,32 +44,3 @@ void input() {
     if (GetAsyncKeyState(VK_SPACE)) // Check space bar input
         jump();
 }
-
-void jump() {
-    if (dinoY >= HEIGHT - JUMP_HEIGHT)
-        dinoY -= JUMP_HEIGHT;
-}
-
-void update() {
-    if (dinoY < HEIGHT - 1)
-        dinoY++;
-    cactusX--;
-    if (cactusX <= 0) {
-        cactusX = WIDTH - 5;
-        score++;
-    }
-    if ((cactusX == dinoX + 1) && (cactusY == dinoY - 1))
-        gameOver = 1;
-}
-
-int main() {
-    setup();
-    while (!gameOver) {
-        draw();
-        input();
-        update();
-        Sleep(100);
-    }
-    std::cout << "\nGame Over! Final Score: " << score << "\n";
-    return 0;
-}
